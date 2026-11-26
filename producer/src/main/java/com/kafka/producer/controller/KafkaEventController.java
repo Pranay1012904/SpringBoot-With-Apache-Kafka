@@ -19,7 +19,9 @@ public class KafkaEventController {
     @GetMapping("/publish/{message}")
     public ResponseEntity<?> sendMessage(@PathVariable String message){
         try {
-            kafkaPublisher.produceToTopic(message);
+            for(int i=1;i<10000;i++) {
+                kafkaPublisher.produceToTopic(message+" ID :: "+i);
+            }
             return new ResponseEntity<>("Message Published", HttpStatus.OK);
         } catch (Exception e) {
             //throw new RuntimeException(e);
