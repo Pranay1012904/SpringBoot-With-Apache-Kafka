@@ -14,7 +14,7 @@ public class KafkaPublisher {
     private KafkaTemplate<String, Object> kafkaTemplate;
 
     public void produceToTopic(String message){
-       CompletableFuture<SendResult<String, Object>> future= kafkaTemplate.send("test", message);
+       CompletableFuture<SendResult<String, Object>> future= kafkaTemplate.send("customTopic_1", message);
         future.whenComplete((r,e)->{
             if(e==null){
                 System.out.println("SENT MESSAGE TO TOPIC: "+message+" OFFSET: "
